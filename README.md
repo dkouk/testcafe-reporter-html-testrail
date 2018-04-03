@@ -31,11 +31,14 @@ testCafe
 
 ## Set Environement
 
-``` **For HTML Report**
+**For HTML Report**
+``` 
+
 HTML_REPORT_PATH : set the report output folder | default: Node_modules's (in where plugin is installed) sibling folder
+```
 
-** For Testrail publish **
-
+**For Testrail publish**
+```
 TESTRAIL_ENABLE : set true to enable Testrail api | default: false
 TESTRAIL_HOST : https://mitesh.testrail.com/ 
 TESTRAIL_USER : username
