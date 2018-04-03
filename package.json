@@ -15,7 +15,8 @@
   "keywords": [
     "testcafe",
     "reporter",
-    "plugin"
+    "testrail",
+	"html"
   ],
   "license": "MIT",
   "devDependencies": {
