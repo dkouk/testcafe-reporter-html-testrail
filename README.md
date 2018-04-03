@@ -1,12 +1,12 @@
-# testcafe-reporter-HTML-TestRail
+# testcafe-reporter-html-testrail
 
-This is the **HTML-TestRail** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
+This is the **html-testrail** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
 
 
 ## Install
 
 ```
-npm install testcafe-reporter-HTML-TestRail
+npm install testcafe-reporter-html-testrail
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ npm install testcafe-reporter-HTML-TestRail
 When you run tests from the command line, specify the reporter name by using the `--reporter` option:
 
 ```
-testcafe chrome 'path/to/test/file.js' --reporter HTML-TestRail
+testcafe chrome 'path/to/test/file.js' --reporter html-testrail
 ```
 
 
@@ -25,7 +25,7 @@ testCafe
     .createRunner()
     .src('path/to/test/file.js')
     .browsers('chrome')
-    .reporter('HTML-TestRail') // <-
+    .reporter('html-testrail') // <-
     .run();
 ```
 

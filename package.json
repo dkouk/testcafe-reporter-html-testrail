@@ -1,8 +1,8 @@
 {
-  "name": "testcafe-reporter-my-reporter",
-  "version": "1.0.0",
+  "name": "testcafe-reporter-html-testrail",
+  "version": "1.0.2",
   "description": "my-reporter TestCafe reporter plugin.",
-  "repository": "https://github.com/mitesh.savani/testcafe-reporter-my-reporter",
+  "repository": "https://github.com/miteshsavani/HTML-TestRail",
   "author": {
     "name": "Mitesh Savani",
     "email": "mitesh.savani810@gmail.com",
@@ -12,11 +12,6 @@
   "files": [
     "lib"
   ],
-  "scripts": {
-    "test": "gulp test",
-    "publish-please": "publish-please",
-    "prepublish": "publish-please guard"
-  },
   "keywords": [
     "testcafe",
     "reporter",
