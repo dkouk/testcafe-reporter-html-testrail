@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-html-testrail",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "my-reporter TestCafe reporter plugin.",
   "repository": "https://github.com/miteshsavani/HTML-TestRail",
   "author": {
@@ -16,7 +16,7 @@
     "testcafe",
     "reporter",
     "testrail",
-	"html"
+    "html"
   ],
   "license": "MIT",
   "devDependencies": {
