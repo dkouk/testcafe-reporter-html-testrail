@@ -39,6 +39,8 @@ testCafe
 HTML_REPORT_PATH : set the report output folder | default: Node_modules's (in where plugin is installed) sibling folder
 ```
 
+##### Sample Report
+
 <p align="center">
     <img src="https://raw.github.com/miteshsavani/HTML-TestRail/master/media/HTML_Output.jpg" alt="preview" />
 </p>
