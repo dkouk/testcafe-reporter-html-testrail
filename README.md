@@ -3,7 +3,7 @@
 This is the **html-testrail** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
 
 <p align="center">
-    <img src="https://raw.github.com/mitesh.savani/testcafe-reporter-html-testrail/master/media/Console_Output.jpg" alt="preview" />
+    <img src="https://raw.githubusercontent.com/miteshsavani/HTML-TestRail/master/media/Console_Output.jpg" alt="preview" />
 </p>
 
 ## Install
@@ -40,7 +40,7 @@ HTML_REPORT_PATH : set the report output folder | default: Node_modules's (in wh
 ```
 
 <p align="center">
-    <img src="https://raw.github.com/mitesh.savani/testcafe-reporter-html-testrail/master/media/HTML_Output.jpg" alt="preview" />
+    <img src="https://raw.github.com/miteshsavani/HTML-TestRail/master/media/HTML_Output.jpg" alt="preview" />
 </p>
 
 #### For Testrail publish
