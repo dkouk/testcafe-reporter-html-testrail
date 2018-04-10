@@ -530,13 +530,25 @@ export default function () {
                          </html>`;
             var fs = require('fs');
             
-            var dir = `${__dirname}/../../../TestResult`;
+            var dir = process.env.HTML_REPORT_PATH || `${__dirname}../../../../TestResult`;
 
-            if (!fs.existsSync(dir))
-                fs.mkdirSync(dir);
-
+            if (!fs.existsSync(dir)) {
+                let dirName = '';
+                const filePathSplit = dir.split('/');
+                for (let index = 0; index < filePathSplit.length; index++) {
+                    dirName += filePathSplit[index] + '/';
+                    if (!fs.existsSync(dirName))
+                        fs.mkdirSync(dirName);
+                }
+            }
             
-            var filename = process.env.HTML_REPORT_PATH || `${dir}/Report_${this.creationDate}.html`;
+
+            var filename = `${dir}/Report_${this.creationDate}.html`;
+
+            if (typeof process.env.HTML_REPORT_PATH !== 'undefined') {
+                filename = process.env.HTML_REPORT_PATH + `/Report_${this.creationDate}.html`;
+            }
+            
             var isError = false;
             fs.writeFile(filename, this.output, function (err) {
 
