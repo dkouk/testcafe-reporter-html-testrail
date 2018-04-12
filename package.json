@@ -2,7 +2,7 @@
   "name": "testcafe-reporter-html-testrail",
   "version": "1.0.9",
   "description": "HTML Testrail TestCafe reporter plugin.",
-  "repository": "https://github.com/miteshsavani/HTML-TestRail",
+  "repository": "https://github.com/miteshsavani/testcafe-reporter-html-testrail",
   "author": {
     "name": "Mitesh Savani",
     "email": "mitesh.savani810@gmail.com",
@@ -12,6 +12,9 @@
   "files": [
     "lib"
   ],
+  "scripts": {
+    "publish-please": "publish-please"
+  },
   "keywords": [
     "testcafe",
     "reporter",
@@ -28,7 +31,7 @@
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.2.0",
     "normalize-newline": "^1.0.2",
-    "publish-please": "^2.1.4",
+    "publish-please": "^2.4.1",
     "read-file-relative": "^1.2.0",
     "testcafe": "^0.2.0-alpha"
   },
