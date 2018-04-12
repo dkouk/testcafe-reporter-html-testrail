@@ -1,7 +1,7 @@
 {
   "name": "testcafe-reporter-html-testrail",
   "version": "1.0.9",
-  "description": "my-reporter TestCafe reporter plugin.",
+  "description": "HTML Testrail TestCafe reporter plugin.",
   "repository": "https://github.com/miteshsavani/HTML-TestRail",
   "author": {
     "name": "Mitesh Savani",
