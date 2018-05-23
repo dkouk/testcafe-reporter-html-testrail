@@ -37,6 +37,7 @@ testCafe
 #### For HTML Report
 ``` 
 HTML_REPORT_PATH : set the report output folder | default: Node_modules's (in where plugin is installed) sibling folder
+HTML_REPORT_Name : set the report name | default: Report_TIMESTAMP.html (e.g.: Report_16_5_2018_14_46_46.html)
 ```
 
 ##### Sample Report

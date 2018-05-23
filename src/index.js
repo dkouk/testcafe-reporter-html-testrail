@@ -495,7 +495,7 @@ export default function () {
         TestrailHost:        null,
         ConfigID:           [],
 
-        
+
         reportTaskStart (startTime, userAgents, testCount) {
             this.startTime = new Date(); // set first test start time
 
@@ -519,7 +519,7 @@ export default function () {
 			this.TestrailPass = process.env.TESTRAIL_PASS;
 			this.TestrailUser = process.env.TESTRAIL_USER;
 			if (this.EnableTestrail) {
-				
+
 				if(!this.ProjectName || !this.TestrailHost || !this.TestrailPass || !this.TestrailUser) {
 					this.newline()
 					.write(this.chalk.red.bold('Error:  TESTRAIL_HOST, TESTRAIL_USER, TESTRAIL_PASS and PROJECT_NAME must be set as environment variables for the reporter plugin to push the result to the Testrail'));
@@ -549,9 +549,9 @@ export default function () {
                 .newline();
             var testOutput = {};
 
-            this.testStartTime = new Date(); // set net test start time 
+            this.testStartTime = new Date(); // set net test start time
             var testStatus = '';
-			
+
             if (testRunInfo.skipped) testStatus = `Skipped`;
             else if (hasErr === 0) testStatus = `Passed`;
             else testStatus = `Failed`;
@@ -579,18 +579,18 @@ export default function () {
                     error[2] += this.formatError(err, `${idx + 1}) `).replace(/(?:\r\n|\r|\n)/g, '<br />').replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
                     testOutput[4] += this.formatError(err, `${idx + 1}) `).replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
                 });
-                
+
                 this.errorTestData.push(error);
             }
-            
-            
+
+
             this.testResult.push(testOutput);
-            
+
         },
 
         reportTaskDone (endTime, passed) {
             const durationMs  = endTime - this.startTime;
-            
+
             const durationStr = this.moment
                                     .duration(durationMs)
                                     .format('h[h] mm[m] ss[s]');
@@ -601,12 +601,12 @@ export default function () {
                          `${this.testCount - passed}/${this.testCount} Failed`;
 
             footer += ` (Duration: ${durationStr})`;
-            
+
             if (this.skipped > 0) {
                 this.write(this.chalk.cyan(`${this.skipped} Skipped`))
                     .newline();
             }
-            
+
             this.passed = passed;
             this.failed = this.testCount - passed;
 
@@ -616,13 +616,13 @@ export default function () {
             var d = new Date();
 
             this.creationDate = d.getDate() + '_' + (d.getMonth() + 1) + '_' + d.getFullYear() + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
-    
+
             this.generateReport();
-			
+
 			if (this.EnableTestrail) {
 				this.publishResultToTestrail();
 			}
-            
+
         },
 
         _renderErrors (errs) {
@@ -647,21 +647,21 @@ export default function () {
             .write('------------------------------------------------------')
             .newline()
             .write(this.chalk.green('Publishing the result to testrail...'));
-            
+
             for (var index in this.testResult) {
-                
+
                 const testDesc = this.testResult[index][1].split('\|'); // split the Test Description
                 let caseID = null;
 
                 if (typeof testDesc[2] === 'undefined') {  // verify that Case_ID  of test is present or not
                     this.newline()
                     .write(this.chalk.red.bold(this.symbols.err))
-                    .write('Warning:  Test: ' + this.testResult[index][1] + ' missing the Testrail ID'); 
-                    continue; 
+                    .write('Warning:  Test: ' + this.testResult[index][1] + ' missing the Testrail ID');
+                    continue;
                 }
 
                 caseID = String(testDesc[2]).toUpperCase().replace('C', ''); // remove the prefix C from CaseID
-                
+
                 //to check that caseID is valid ID using isnumber function
                 if(isNaN(caseID)) {
                     this.newline()
@@ -673,21 +673,21 @@ export default function () {
                 let status = this.testResult[index][2];
                 let comment = null;
 
-                if (status === 'Skipped') { 
-                    status = 6; 
-                    comment = 'Test Skipped'; 
+                if (status === 'Skipped') {
+                    status = 6;
+                    comment = 'Test Skipped';
                 }
-                else if (status === 'Passed') { 
-                    status = 1; 
-                    comment = 'Test passed'; 
+                else if (status === 'Passed') {
+                    status = 1;
+                    comment = 'Test passed';
                 }
-                else { 
-                    status = 5; 
-                    comment = this.testResult[index][4];  // if error found for the Test, It will populated in the comment 
+                else {
+                    status = 5;
+                    comment = this.testResult[index][4];  // if error found for the Test, It will populated in the comment
                 }
 
                 const Testresult = {};
-				
+
                 Testresult['case_id'] = caseID.trim();
                 Testresult['status_id'] = status;
                 Testresult['comment'] = comment;
@@ -720,7 +720,7 @@ export default function () {
              this.getSuiteID(api);
 
             if(this.SuiteID === 0 ) return;
-            
+
 
             const AgentDetails = this.agents[0].split('/');
             const rundetails = {
@@ -728,17 +728,17 @@ export default function () {
                 'include_all': false,
                 'case_ids':    caseidList,
                 'name':        'Run_' + this.creationDate + '(' + AgentDetails[0] + '_' + AgentDetails[1] + ')'
-            
+
             };
 
-            
+
 
             let runId = null;
             let result = null;
 
-            
+
             api.addPlanEntry(this.PlanID, rundetails, (err, response, run) => {
- 
+
                 if (err !== 'null') {
                     runId = run.runs[0].id;
                     this.newline()
@@ -748,11 +748,11 @@ export default function () {
                             .newline()
                             .write(this.chalk.blue.bold('Run name   '))
                             .write(this.chalk.yellow('Run_' + this.creationDate + '(' + AgentDetails[0] + '_' + AgentDetails[1] + ')'));
-            
+
                     result = {
                         results: resultsTestcases
                     };
-            
+
                     api.addResultsForCases(runId, result, (err1, response1, results) => {
                         if (err1 === 'null') {
                             this.newline()
@@ -771,9 +771,9 @@ export default function () {
                             .newline()
                             .write(this.chalk.green('Result added to the testrail Successfully'));
                         }
-                        
+
                     });
-            
+
                 }
                 else {
                     this.newline()
@@ -784,7 +784,7 @@ export default function () {
             });
 
         },
-		
+
 		getProject(api) {
 			api.getProjects((err, response, project) => {
                 if (err !== 'null' && typeof project !== 'undefined') {
@@ -796,7 +796,7 @@ export default function () {
                             .write(this.chalk.blue.bold('Project name(id) '))
                             .write(this.chalk.yellow(this.ProjectName + '(' + project.id + ')'));
                         }
-                        
+
                     });
                 }
                 else {
@@ -804,11 +804,11 @@ export default function () {
                     .write(this.chalk.blue('-------------Error at Get Projects  ----------------'))
                     .newline();
                     console.log(err);
-                    
-                    this.ProjectID =  0; 
+
+                    this.ProjectID =  0;
                 }
 			});
-			
+
 		},
 
         getPlanID(api) {
@@ -866,14 +866,14 @@ export default function () {
                     .write(this.chalk.blue('-------------Error at Add New Plan  ----------------'))
                     .newline();
                     console.log(err);
-                    
-                    this.PlanID =  0; 
+
+                    this.PlanID =  0;
                 }
             });
         },
 
         getSuiteID(api){
-            
+
             return api.getSuites(this.ProjectID, (err, response, suites) => {
                 if (err !== 'null') {
 
@@ -883,7 +883,7 @@ export default function () {
                          this.SuiteID =  0;
                      }
                      else {
-                         
+
                          var id = suites[0].id;
                          this.newline()
                          .write(this.chalk.blue.bold('Suite name(id) '))
@@ -898,7 +898,7 @@ export default function () {
                     console.log(err);
                     this.SuiteID =  0;
                 }
-               
+
             });
         }
         ,
@@ -959,7 +959,7 @@ export default function () {
                                     <th> Status </th>
                                     <th> Time </th>
                                 </tr> </thead><tbody>`;
-                                
+
             for (var index in this.testResult) {
                 var status = this.testResult[index][2];
 
@@ -974,16 +974,16 @@ export default function () {
                                 <td style='padding-right:0px;border-right:0px;'>${this.testResult[index][3]}</td>
                             <tr>`;
             }
-            
+
             this.output += `</tbody></table><hr /> <br />`;
-            
+
             this.output += `<h3 style='font-color:red'> Error details</h3><br /><table class='table table-bordered table-hover'><thead>
                                 <tr>
                                     <th> Fixture Name </th>
                                     <th> Test Name </th>
                                     <th> Error </th>
                                 </tr></thead><tbody>`;
-                                
+
             for (var i in this.errorTestData) {
                 this.output += `<tr>
                                 <td>${this.errorTestData[i][0]}</td>
@@ -991,12 +991,12 @@ export default function () {
                                 <td>${this.errorTestData[i][2]}</td>
                                 <tr>`;
             }
-            
+
             this.output += `</tbody></table>
                            </body>
                          </html>`;
             var fs = require('fs');
-            
+
             var dir = process.env.HTML_REPORT_PATH || `${__dirname}../../../../TestResult`;
 
             if (!fs.existsSync(dir)) {
@@ -1008,16 +1008,21 @@ export default function () {
                         fs.mkdirSync(dirName);
                 }
             }
-            
 
-            var filename = `${dir}/Report_${this.creationDate}.html`;
+            var filename = `Report_${this.creationDate}.html`;
+
+            if (typeof process.env.HTML_REPORT_NAME !== 'undefined') {
+                filename = `${process.env.HTML_REPORT_NAME}.html`;
+            }
+
+            var file = `${dir}/${filename}`;
 
             if (typeof process.env.HTML_REPORT_PATH !== 'undefined') {
-                filename = process.env.HTML_REPORT_PATH + `/Report_${this.creationDate}.html`;
+                file = process.env.HTML_REPORT_PATH + `/${filename}`;
             }
-            
+
             var isError = false;
-            fs.writeFile(filename, this.output, function (err) {
+            fs.writeFile(file, this.output, function (err) {
 
                 if (err) {
 
@@ -1025,13 +1030,13 @@ export default function () {
                     return console.log(err);
                 }
             });
-            if(!isError){                
+            if(!isError){
                 this.newline()
                 .write('------------------------------------------------------')
                 .newline()
                 .newline()
                 .write(this.chalk.green(`The file was saved at`))
-                .write(this.chalk.yellow(filename));
+                .write(this.chalk.yellow(file));
             }
         }
     };
