@@ -908,7 +908,7 @@ export default function () {
             this.output += `<!DOCTYPE html>
 							<html>
                             <head>
-                            <title>report</title>
+                            <title>TestCafe HTML Report</title>
                             <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
                             <meta name='viewport' content='width=device-width, initial-scale=1'>
                             <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
