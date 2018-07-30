@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-html-testrail",
-  "version": "2.0.3",
+  "version": "2.0.7",
   "description": "HTML Testrail TestCafe reporter plugin.",
   "repository": "https://github.com/miteshsavani/testcafe-reporter-html-testrail",
   "author": {
