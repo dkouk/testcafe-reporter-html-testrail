@@ -905,7 +905,8 @@ export default function () {
 
         generateReport () {
 
-            this.output += `<html>
+            this.output += `<!DOCTYPE html>
+							<html>
                             <head>
                             <title>report</title>
                             <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
@@ -948,7 +949,7 @@ export default function () {
                             <hr/>
                             
                             
-                            <h4>Running tests in: <b>${this.agents}</b>                      <span> Total Time: ${this.totalTaskTime}</h4>
+                            <h4>Running tests in: <b>${this.agents}</b>                      <span> Total Time: ${this.totalTaskTime}</span></h4>
                             <hr/><br/>
                                 <h3 style='font-color:red'> Test details</h3>
                                 <table class='table table-bordered table-hover'>
@@ -972,7 +973,7 @@ export default function () {
                                 <td>${this.testResult[index][1]}</td>
                                 ${status}
                                 <td style='padding-right:0px;border-right:0px;'>${this.testResult[index][3]}</td>
-                            <tr>`;
+                            </tr>`;
             }
 
             this.output += `</tbody></table><hr /> <br />`;
@@ -989,7 +990,7 @@ export default function () {
                                 <td>${this.errorTestData[i][0]}</td>
                                 <td>${this.errorTestData[i][1]}</td>
                                 <td>${this.errorTestData[i][2]}</td>
-                                <tr>`;
+                                </tr>`;
             }
 
             this.output += `</tbody></table>
